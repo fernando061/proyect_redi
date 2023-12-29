@@ -17,5 +17,6 @@ class User(data_base.Model):
     created_at = Column(types.DateTime, default=func.current_timestamp())
     updated_at = Column(types.DateTime, default=func.current_timestamp(), onupdate=func.current_timestamp())
     
-    users_roles = orm.relationship(
-        'UserRole', backref='userRole')
+    # users_roles = orm.relationship(
+    #     'UserRole', backref='userRole')
+    roles = orm.relationship('Role', secondary='user_role', backref='users')
