@@ -19,4 +19,4 @@ class User(data_base.Model):
     
     # users_roles = orm.relationship(
     #     'UserRole', backref='userRole')
-    roles = orm.relationship('Role', secondary='user_role', backref='users')
+    roles = orm.relationship('Role', secondary='user_role', backref='ref_users')

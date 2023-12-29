@@ -7,4 +7,4 @@ class Role(data_base.Model):
     name = Column(String(50), unique=True, nullable=False)
     # users_roles = orm.relationship(
     #     'UserRole', backref='userRole')
-    users = orm.relationship('User', secondary='user_role', backref='roles')
+    users = orm.relationship('User', secondary='user_role', backref='ref_roles')
