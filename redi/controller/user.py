@@ -51,7 +51,7 @@ class RegisterController(Resource):
             return {
                 "message":"Email incorrect"
             }, 400
-        password = data['[password]']
+        password = data['password']
         if search(PATTERN_PASSWORD, password) is None:
             return {
                 "message": "Password incorrecto, minimo 6 caracteres una mayuscula, una minuscula y un simbolo especial"
