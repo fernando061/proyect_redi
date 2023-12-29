@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, request
 from bcrypt import hashpw, gensalt, checkpw
 from re import search
-from redi.utils.patterns import PATTERN_EMAIL, PATTERN_PASSWORD
+from utils.patterns import PATTERN_EMAIL, PATTERN_PASSWORD
 from models.user import User
 from models.role import Role
 from connection_db import data_base
