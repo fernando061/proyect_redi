@@ -1,4 +1,4 @@
-from connection_db import data_base
+from extensions import data_base
 from sqlalchemy import Column, types,func,orm
 
 # user_roles = Table('user_roles',
