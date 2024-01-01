@@ -4,7 +4,10 @@ from config import Config, DevelopmentConfig
 from models.user import User
 from models.role import Role
 from models.user_role import UserRole
+from models.type_post import TypePost
+from models.post import Post
 from controller.user import auth_bp
+from controller.type_post import type_post
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -18,7 +21,8 @@ def create_app(config_name):
     data_base.init_app(app)
     jwt.init_app(app)
     bcrypt.init_app(app)
-    app.register_blueprint(auth_bp)
+    # app.register_blueprint(auth_bp)
+    app.register_blueprint(type_post)
 
     with app.app_context():
         data_base.create_all()
