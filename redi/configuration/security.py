@@ -36,8 +36,6 @@ def generate_access_token(identity):
 
 def verify_password(user, password):
     """Verifica la contraseña del usuario."""
-    print(user.password)
-    print(password)
     return user and bcrypt.check_password_hash(user.password, password)
 
 @jwt_required()
@@ -50,9 +48,6 @@ def get_current_user():
 def authenticate_user(email, password):
     """Autenticación de usuario."""
     user = User.query.filter_by(email=email).first()
-    print(user.email)
-    print(user.password)
-    print(password)
     if not user or not verify_password(user, password):
         return None
     return user

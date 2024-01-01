@@ -86,16 +86,18 @@ class LoginController(Resource):
     def post(self):
         data = self.serializer.parse_args()
         print(data)
+        email =  data['email']
+        password =  data['password']
         user = data_base.session.query(User).filter(
-        User.email == data['email']).first()
+        User.email == email).first()
         print('############')
-        print(user.password)
+        print(password)
         if user is None:
             return {
                 "message": "User not found"
             }, 404
         # seq = User()
-        user = authenticate_user(user.email, user.password)
+        user = authenticate_user(email, password)
         # print(user.email)
         if not user:
             return {'error': 'Invalid email or password'}, 401
