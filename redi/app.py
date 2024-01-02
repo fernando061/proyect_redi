@@ -1,3 +1,4 @@
+from unicodedata import name
 from flask import Flask
 from extensions import data_base, jwt,bcrypt
 from config import Config, DevelopmentConfig
@@ -21,8 +22,8 @@ def create_app(config_name):
     data_base.init_app(app)
     jwt.init_app(app)
     bcrypt.init_app(app)
-    # app.register_blueprint(auth_bp)
-    app.register_blueprint(type_post)
+    app.register_blueprint(auth_bp,name='auth_blueprint')
+    app.register_blueprint(type_post,name='type_post_blueprint')
 
     with app.app_context():
         data_base.create_all()

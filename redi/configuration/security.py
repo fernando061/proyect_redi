@@ -3,6 +3,9 @@ from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_requir
 from extensions import data_base,bcrypt
 from models.user import User
 from models.role import Role
+from functools import wraps
+from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
+
 
 # class User:
 #     def __init__(self, id, email):
@@ -76,14 +79,21 @@ def user_has_admin_role(user):
 
 
 
-
-# def identificador(payload):
-#     '''Sirve para que una vez el usuario envie la token y quiera realizar una peticion a una ruta protegida esta funcion sera encargada de identificar a dicho usuario y devolver su informacion'''
-#     print(payload)
-#     usuarioId = payload.get('usuario').get('id')
-#     print(usuarioId)
-#     usuarioEncontrado = base_de_datos.session.query(
-#         UsuarioModel).filter(UsuarioModel.usuarioId == usuarioId).first()
-#     if usuarioEncontrado:
-#         return usuarioEncontrado.__dict__
-#     return None
+def admin_required(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        verify_jwt_in_request()
+        roles = verify_jwt_in_request()[1].get('roles', [])
+        # current_user = get_jwt_identity()
+        print(roles[0])
+        # Verifica si el usuario tiene el rol de administrador
+        # if not current_user.get('is_admin'):
+        indice = roles.index('admin') if 'admin' in roles else None
+        if indice==None:
+            return {
+                'success': False,
+                'message': 'User is not authorized to perform this action',
+            }, 403  # Forbidden
+        
+        return fn(*args, **kwargs)
+    return wrapper
