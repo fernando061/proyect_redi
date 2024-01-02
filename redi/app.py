@@ -7,6 +7,10 @@ from models.role import Role
 from models.user_role import UserRole
 from models.type_post import TypePost
 from models.post import Post
+from models.photo import Photo
+from models.video import Video
+from models.post_photo import PostPhoto
+from models.post_video import PostVideo
 from controller.user import auth_bp
 from controller.type_post import type_post
 
