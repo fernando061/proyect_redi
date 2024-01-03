@@ -10,12 +10,6 @@ from mapper.user_mapper import UserMapper
 class UserService():
     def __init__(self):
         pass
-        # self.serializer = reqparse.RequestParser(bundle_errors=True)
-        # self.serializer.add_argument('name', type=str, location='json', required=True, help='Is required the name')
-        # self.serializer.add_argument('email', type=str, location='json', required=True, help='Is required the email')
-        # self.serializer.add_argument('password', type=str, location='json', required=True, help='Is required the password')
-        # self.serializer.add_argument('nationality', type=str, location='json', required=True, help='Is required the nationality')
-        # self.serializer.add_argument('bio', type=str, location='json', required=True, help='Is required the bio')
 
     def register(userDto: RegisterRequest):
         print("####")

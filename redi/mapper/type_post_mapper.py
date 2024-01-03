@@ -1,9 +1,10 @@
 from models.type_post import TypePost
+from dtos.type_post_dto import TypePostRequest
 
 class TypePostMapper:
     @staticmethod
-    def map_from_request(request_data):
+    def map_from_request(typePostDto: TypePostRequest):
         return TypePost(
-            name=request_data['name'],
-            description=request_data['description']
+            name=typePostDto.name,
+            description=typePostDto.description
         )

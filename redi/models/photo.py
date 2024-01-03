@@ -7,6 +7,6 @@ class Photo(data_base.Model):
 
     id = Column(types.Integer, primary_key=True)
     type_file = Column(types.String(25),nullable=False)
-    url_file = Column( types.String(255),nullable=False)
+    url_file = Column( types.Text,nullable=False)
 
     post = orm.relationship('Post', secondary='post_photo', backref='ref_photo')
