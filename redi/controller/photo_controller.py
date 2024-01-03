@@ -20,7 +20,7 @@ def uploadPhoto():
     if type_post and type_post not in {member.value for member in EnumTypePost}:
         return {
             'error': True,
-            'message': 'Este tipo de post no existe'
+            'message': 'Este tipo de post no existe. sole se permiten: blog,post,event,others'
         },404
     
     if 'file[]' not in request.files:
