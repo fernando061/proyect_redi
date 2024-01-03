@@ -1,6 +1,6 @@
 from unicodedata import name
 from flask import Flask
-from extensions import data_base, jwt,bcrypt
+from extensions import data_base, jwt,bcrypt,migrate
 from config import Config, DevelopmentConfig
 from models.user import User
 from models.role import Role
@@ -18,8 +18,6 @@ import firebase_admin
 from firebase_admin import credentials
 def create_app(config_name):
     app = Flask(__name__)
-    # api = Api(app)
-    ##app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost/project_redi'
     if config_name == 'development':
         app.config.from_object(DevelopmentConfig)
     else:
@@ -33,6 +31,7 @@ def create_app(config_name):
     })
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     data_base.init_app(app)
+    migrate.init_app(app, data_base)
     jwt.init_app(app)
     bcrypt.init_app(app)
 
@@ -47,5 +46,4 @@ def create_app(config_name):
         return {
         "message": "Wellcome to my API of project REDI"
         }
-    # api.add_resource(RegisterController, '/register')
     return app;
