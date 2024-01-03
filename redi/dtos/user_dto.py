@@ -1,0 +1,10 @@
+class RegisterRequest:
+    name: str
+    email: str
+    password: str
+    nationality: str
+    bio: str
+    role: str
+class LoginRequest:
+    email: str
+    password: str

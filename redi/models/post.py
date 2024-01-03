@@ -12,5 +12,5 @@ class Post(data_base.Model):
     created_at = Column(types.DateTime, default=func.current_timestamp())
     updated_at = Column(types.DateTime, default=func.current_timestamp(), onupdate=func.current_timestamp())
     type_post_id = data_base.Column(types.Integer,ForeignKey('type_post.id'))
-    photo = orm.relationship('Photo', secondary='post_video', backref='ref_posts')
-    video = orm.relationship('Video', secondary='post_video', backref='ref_post')
+    photos = orm.relationship('Photo', secondary='post_photo', backref='ref_posts')
+    videos = orm.relationship('Video', secondary='post_video', backref='ref_post')

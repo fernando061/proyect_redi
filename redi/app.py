@@ -11,9 +11,9 @@ from models.photo import Photo
 from models.video import Video
 from models.post_photo import PostPhoto
 from models.post_video import PostVideo
-from controller.user import auth_bp
-from controller.type_post import type_post
-
+from controller.user_controller import user_controller_bp
+import firebase_admin
+from firebase_admin import credentials
 def create_app(config_name):
     app = Flask(__name__)
     # api = Api(app)
@@ -22,12 +22,16 @@ def create_app(config_name):
         app.config.from_object(DevelopmentConfig)
     else:
         app.config.from_object(Config)
+
+    ruta_credenciales = './dev-proyect-redi-firebase-adminsdk-fu8it-8ae628d9ad.json'
+    cred = credentials.Certificate(ruta_credenciales)
+    firebase_admin.initialize_app(cred)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     data_base.init_app(app)
     jwt.init_app(app)
     bcrypt.init_app(app)
-    app.register_blueprint(auth_bp,name='auth_blueprint')
-    app.register_blueprint(type_post,name='type_post_blueprint')
+
+    app.register_blueprint(user_controller_bp)
 
     with app.app_context():
         data_base.create_all()
