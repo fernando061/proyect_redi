@@ -1,7 +1,7 @@
 // components/LoginForm.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Link from "next/link";
+import { login } from '../../services/auth';
 
 const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
@@ -9,44 +9,23 @@ const LoginForm = ({ onClose }) => {
   const [error, setError] = useState(null);
 
   const handleLogin = async () => {
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/login",
-        { email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        const { data } = response;
-
-        // Check if the response contains a token
-        if (data.token) {
-          // Store the token in local storage or state based on your needs
-          localStorage.setItem("token", data.token);
-          console.log("Login successful");
-
-          // Close the form after performing the action
-          onClose();
-        } else {
-          console.error("Error in login: Token not found");
-          setError("Error in login. Please try again.");
-        }
-      } else {
-        console.error("Error in login");
-        setError("Error in login. Check your credentials.");
-      }
-    } catch (error) {
-      // Handle request errors
-      console.error("Error in request:", error.message);
-      setError("Error in request. Please try again.");
+    
+    if (!email || !password) {
+      setError('Please enter both email and password.');
+      return;
     }
 
-    // Cierra el formulario después de realizar la acción
-    //onClose();
+    try {
+      const credentials = { email, password };
+      const response = await login(credentials);
+      console.log('Additional actions:', response);
+
+      // Si necesitas realizar alguna acción adicional después del login, puedes hacerlo aquí
+      onClose();
+    } catch (error) {
+      // Manejo de errores específicos si es necesario
+      setError('Error in login. Please try again.');
+    }
   };
 
   return (
