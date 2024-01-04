@@ -14,6 +14,7 @@ from models.post_video import PostVideo
 from controller.user_controller import user_controller_bp
 from controller.type_post_controller import type_post_bp
 from controller.photo_controller import photo_controller_bp
+from controller.post_controller import post_controller_bp
 import firebase_admin
 from firebase_admin import credentials
 def create_app(config_name):
@@ -38,6 +39,7 @@ def create_app(config_name):
     app.register_blueprint(user_controller_bp)
     app.register_blueprint(type_post_bp)
     app.register_blueprint(photo_controller_bp)
+    app.register_blueprint(post_controller_bp)
     with app.app_context():
         data_base.create_all()
 

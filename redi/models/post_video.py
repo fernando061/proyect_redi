@@ -7,8 +7,8 @@ class PostVideo(data_base.Model):
 
     id = Column(types.Integer, primary_key=True)
     
-    post = Column(ForeignKey(column='post.id'),
+    post_id = Column(ForeignKey(column='post.id'),
                     name='post_id', nullable=False, type_=types.Integer,primary_key=True)
 
-    video = Column(ForeignKey(column='video.id'),
+    video_id = Column(ForeignKey(column='video.id'),
                          name='video_id', nullable=False, type_=types.Integer,primary_key=True)

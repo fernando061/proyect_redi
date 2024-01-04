@@ -14,23 +14,23 @@ class EnumTypePost(Enum):
 
 
 @photo_controller_bp.route('/photo/upload_photo', methods=['POST'])
-@admin_required
+# @admin_required
 def uploadPhoto():
     type_post = request.form.get('type_post')
     if type_post and type_post not in {member.value for member in EnumTypePost}:
         return {
-            'error': True,
+            'status': True,
             'message': 'Este tipo de post no existe. sole se permiten: blog,post,event,others'
         },404
     
     if 'file[]' not in request.files:
         return {
-            'error': True,
+            'status': True,
             'message': 'error'
         },404
     files = request.files.getlist('file[]')
     urls = PhotoService.upload_firebase(files,type_post)
     return {
-            'success': True,
+            'status': True,
             'content': urls,
         }, 201
