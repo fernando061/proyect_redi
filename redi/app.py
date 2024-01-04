@@ -1,5 +1,6 @@
 from unicodedata import name
 from flask import Flask
+from flask_cors import CORS
 from extensions import data_base, jwt,bcrypt,migrate
 from config import Config, DevelopmentConfig
 from models.user import User
@@ -19,6 +20,8 @@ import firebase_admin
 from firebase_admin import credentials
 def create_app(config_name):
     app = Flask(__name__)
+    CORS(app=app, origins='*', methods=['GET',
+     'POST', 'PUT', 'DELETE'], allow_headers='Content-Type')
     if config_name == 'development':
         app.config.from_object(DevelopmentConfig)
     else:

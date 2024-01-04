@@ -1,52 +1,26 @@
 // components/LoginForm.js
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Link from "next/link";
 
+import Link from "next/link";
+import {login} from "../service/UserService"
 const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault(); 
+    console.log("Hola mundo")
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:5000/login",
-        { email, password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        const { data } = response;
-
-        // Check if the response contains a token
-        if (data.token) {
-          // Store the token in local storage or state based on your needs
-          localStorage.setItem("token", data.token);
-          console.log("Login successful");
-
-          // Close the form after performing the action
-          onClose();
-        } else {
-          console.error("Error in login: Token not found");
-          setError("Error in login. Please try again.");
-        }
-      } else {
-        console.error("Error in login");
-        setError("Error in login. Check your credentials.");
-      }
-    } catch (error) {
-      // Handle request errors
-      console.error("Error in request:", error.message);
-      setError("Error in request. Please try again.");
-    }
-
-    // Cierra el formulario después de realizar la acción
-    //onClose();
+      const loginModel = {email:email,password:password}
+      await login(loginModel)
+      onClose();
+     
+  } catch (error) {
+      console.log(error)
+      setError(error.message)
+  }
+  
   };
 
   return (
