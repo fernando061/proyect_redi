@@ -15,3 +15,4 @@ class Post(data_base.Model):
     type_post_id = data_base.Column(types.Integer,ForeignKey('type_post.id'))
     photos = orm.relationship('Photo', secondary='post_photo', backref='ref_posts')
     videos = orm.relationship('Video', secondary='post_video', backref='ref_post')
+

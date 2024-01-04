@@ -1,13 +1,19 @@
 // components/LoginForm.js
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import Link from "next/link";
 import { login } from '../../services/auth';
+=======
+>>>>>>> refs/remotes/origin/main
 
+import Link from "next/link";
+import {login} from "../service/UserService"
 const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+<<<<<<< HEAD
   const handleLogin = async () => {
     
     if (!email || !password) {
@@ -26,6 +32,21 @@ const LoginForm = ({ onClose }) => {
       // Manejo de errores específicos si es necesario
       setError('Error in login. Please try again.');
     }
+=======
+  const handleLogin = async (event) => {
+    event.preventDefault(); 
+    console.log("Hola mundo")
+    try {
+      const loginModel = {email:email,password:password}
+      await login(loginModel)
+      onClose();
+     
+  } catch (error) {
+      console.log(error)
+      setError(error.message)
+  }
+  
+>>>>>>> refs/remotes/origin/main
   };
 
   return (

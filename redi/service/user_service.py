@@ -19,7 +19,7 @@ class UserService():
             raise ValueError({
                 "message":"Email incorrect"
             })
-        password = userDto.email
+        password = userDto.password
         if search(PATTERN_PASSWORD, password) is None:
             raise ValueError({
                 "message": "Password incorrecto, minimo 6 caracteres una mayuscula, una minuscula y un simbolo especial"

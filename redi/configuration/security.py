@@ -1,4 +1,4 @@
-from flask import current_app, jsonify, abort, make_response
+from flask import current_app, jsonify, abort, make_response,g
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from extensions import data_base,bcrypt
 from models.user import User
@@ -95,5 +95,24 @@ def admin_required(fn):
                 'message': 'User is not authorized to perform this action',
             }, 403  # Forbidden
         
+        return fn(*args, **kwargs)
+    return wrapper
+
+def user_required(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        verify_jwt_in_request()
+        print(verify_jwt_in_request())
+        roles = verify_jwt_in_request()[1].get('roles', [])
+        user_id = verify_jwt_in_request()[1].get('sub', None)
+        # current_user = get_jwt_identity()
+        print(roles[0])
+        indice = roles.index('user') if 'user' in roles else None
+        if indice==None:
+            return {
+                'success': False,
+                'message': 'User is not authorized to perform this action',
+            }, 403  # Forbidden
+        g.user_id = user_id
         return fn(*args, **kwargs)
     return wrapper

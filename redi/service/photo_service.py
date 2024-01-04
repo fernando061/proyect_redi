@@ -10,9 +10,7 @@ class PhotoService():
     def upload_firebase(files,typePost):
         urls = []
         photos: List[Photo] = []
-        print("##############################################################")
         for file in files:
-            print(file.filename)
             bucket = storage.bucket()
             blob = bucket.blob(file.filename)
             mime_type, _ = mimetypes.guess_type(file.filename)
@@ -31,4 +29,5 @@ class PhotoService():
             ))
         data_base.session.add_all(photos)
         data_base.session.commit()
-        return urls
+        photo_ids = [photo.id for photo in photos]
+        return photos
