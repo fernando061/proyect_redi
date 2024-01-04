@@ -1,10 +1,5 @@
 // components/LoginForm.js
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import Link from "next/link";
-import { login } from '../../services/auth';
-=======
->>>>>>> refs/remotes/origin/main
 
 import Link from "next/link";
 import {login} from "../service/UserService"
@@ -13,26 +8,6 @@ const LoginForm = ({ onClose }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-<<<<<<< HEAD
-  const handleLogin = async () => {
-    
-    if (!email || !password) {
-      setError('Please enter both email and password.');
-      return;
-    }
-
-    try {
-      const credentials = { email, password };
-      const response = await login(credentials);
-      console.log('Additional actions:', response);
-
-      // Si necesitas realizar alguna acción adicional después del login, puedes hacerlo aquí
-      onClose();
-    } catch (error) {
-      // Manejo de errores específicos si es necesario
-      setError('Error in login. Please try again.');
-    }
-=======
   const handleLogin = async (event) => {
     event.preventDefault(); 
     console.log("Hola mundo")
@@ -46,7 +21,6 @@ const LoginForm = ({ onClose }) => {
       setError(error.message)
   }
   
->>>>>>> refs/remotes/origin/main
   };
 
   return (
