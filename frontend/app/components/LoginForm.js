@@ -1,20 +1,23 @@
-// components/LoginForm.js
 import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/router';
 
 import Link from "next/link";
 import {login} from "../service/UserService"
-const LoginForm = ({ onClose }) => {
+const LoginForm = ( ) => {
+
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
   const handleLogin = async (event) => {
     event.preventDefault(); 
-    console.log("Hola mundo")
     try {
       const loginModel = {email:email,password:password}
       await login(loginModel)
-      onClose();
+      
+      router.push('/dashboard');
      
   } catch (error) {
       console.log(error)
@@ -22,7 +25,6 @@ const LoginForm = ({ onClose }) => {
   }
   
   };
-
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-50"
@@ -30,7 +32,6 @@ const LoginForm = ({ onClose }) => {
     >
       <div
         className="w-full bg-white rounded-lg shadow border border-black sm:max-w-md"
-      
       >
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-gray-900">

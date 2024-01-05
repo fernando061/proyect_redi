@@ -35,8 +35,17 @@ const login = async(model)=>{
       throw new Error("Error in request. Please try again.");
     }
 }
+const isAuthenticated =  () => {
+  const token = localStorage.getItem("token");
+  console.log(token)
+  if(token && token !== "undefined" && token !== "null") return true
 
+  return false
+
+}
 export{
     login,
+    isAuthenticated
 }
+
 
