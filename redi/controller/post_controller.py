@@ -20,11 +20,11 @@ publish_post_args = {
 }
 post_controller_bp = Blueprint('post_controller', __name__)
 @post_controller_bp.route('/post/publish_post', methods=['POST'])
-@user_required
+# @user_required
 def publishPost():
     try:
         user_id = getattr(g, 'user_id', None)
-        postDto = PostDto(request.form.get('content'),request.form.get('type_post'),user_id)
+        postDto = PostDto(request.form.get('title'),request.form.get('event_date'),request.form.get('content'),request.form.get('type_post'),user_id)
         print('aaaaa##############')
         print(postDto.user_id)
         files = request.files.getlist('file[]')
@@ -46,7 +46,13 @@ def publishPost():
             'message': str(e)
         },404
 
-
+@post_controller_bp.route('/post/get_type_photo/<type_post>', methods=['GET'])
+def getTypePost(type_post: str):
+    posts = PostService.get_type_posts(type_post)
+    return {
+                'status': True,
+                'content':posts,
+            }, 200
 
 @post_controller_bp.errorhandler(422)
 def handle_unprocessable_entity(err):

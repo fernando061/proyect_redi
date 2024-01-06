@@ -19,15 +19,29 @@ class PhotoService():
             # Subir el archivo a Firebase Storage con el tipo MIME detectado
             blob.upload_from_file(file, content_type=mime_type)
             
-            # Esperar a que la carga se complete antes de obtener la URL firmada
-            blob.reload()
-            url = blob.generate_signed_url(expiration=300, method='GET')
+
+            # Obtener la URL pública del archivo
+            blob.make_public()
+            url = blob.public_url
             urls.append(url)
+            # Esperar a que la carga se complete antes de obtener la URL firmada
+            # blob.reload()
+            # url = blob.generate_signed_url(expiration=datetime.timedelta(minutes=1), method='GET')
+            # urls.append(url)
             photos.append( Photo(
                 type_file = mime_type,
                 url_file = url
             ))
         data_base.session.add_all(photos)
         data_base.session.commit()
-        photo_ids = [photo.id for photo in photos]
+        # photo_ids = [photo.id for photo in photos]
         return photos
+    # def get_storage_url(bucket_name, blob_name):
+    #     bucket = storage.bucket()
+    #     # Obtener referencia al archivo (blob) dentro del bucket
+    #     blob = bucket.blob(blob_name)
+
+    #     # Obtener la URL pública del archivo
+    #     url = blob.public_url
+
+    #     return url

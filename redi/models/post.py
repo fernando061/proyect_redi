@@ -9,6 +9,8 @@ class Post(data_base.Model):
 
     id = Column(types.Integer,primary_key=True)
     user_id = data_base.Column(types.Integer,ForeignKey('user.id'))
+    title = Column(types.String(100),nullable=True)
+    event_date = Column(types.DateTime,nullable=True)
     content = Column(types.Text,nullable=True)
     created_at = Column(types.DateTime, default=func.current_timestamp())
     updated_at = Column(types.DateTime, default=func.current_timestamp(), onupdate=func.current_timestamp())

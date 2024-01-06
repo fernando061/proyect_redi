@@ -9,10 +9,29 @@ class EnumTypePost(Enum):
 
 
 class PostDto:
-    def __init__(self, content=None, type_post=None,user_id=None):
+    def __init__(self,title=None,event_date=None ,content=None, type_post=None,user_id=None):
+        self.title = title
+        self.event_date = event_date
         self.content = content
         self.type_post = type_post
         self.user_id = user_id
+
+
+    @property
+    def event_date(self):
+        return self._event_date
+
+    @event_date.setter
+    def event_date(self, value):
+        self._event_date = value
+    @property
+    def title(self):
+        return self._title
+
+    @title.setter
+    def title(self, value):
+        self._title = value
+
     @property
     def content(self):
         return self._content

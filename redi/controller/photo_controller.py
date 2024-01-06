@@ -34,3 +34,7 @@ def uploadPhoto():
             'status': True,
             'content': urls,
         }, 201
+
+@photo_controller_bp.route('/photo/get_type_photo', methods=['POST'])
+def getTypePost():
+    pass
