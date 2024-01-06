@@ -1,20 +1,11 @@
 // app/components/BlogCard.js
-import React from 'react';
-import Link from 'next/link';
 
-const BlogCard = ({ blog }) => {
+const BlogCard = ({ title, content, imageUrl }) => {
   return (
-    <div className="max-w-md mx-auto bg-white shadow-md overflow-hidden md:max-w-2xl">
-      <img className="w-full h-48 object-cover object-center" src={blog.image} alt={blog.title} />
-
-      <div className="p-4">
-        <h2 className="text-xl font-semibold text-gray-800">{blog.title}</h2>
-        <p className="text-gray-600">{blog.summary}</p>
-        
-        <Link href={`/blog/${blog.slug}`}>
-          <a className="mt-2 text-blue-500">Ver más</a>
-        </Link>
-      </div>
+    <div className=" border border-[#2E4053] bg-[#EAFAF1] rounded-lg bg-rounded-lg p-4 shadow-md m-5">
+      <img src={imageUrl} alt={title} className="w-full h-40 object-cover mb-4 rounded-t-lg" />
+      <h2 className="text-xl font-bold text-center mb-2">{title}</h2>
+      <p className="text-gray-700">{content}</p>
     </div>
   );
 };
