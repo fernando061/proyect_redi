@@ -20,6 +20,7 @@ const HomePage = () => {
           <BlogCard title="Blog 1" content="Contenido del Blog 1" imageUrl="https://via.placeholder.com/150" />
           <BlogCard title="Blog 2" content="Contenido del Blog 2" imageUrl="https://via.placeholder.com/150" />
           <BlogCard title="Blog 3" content="Contenido del Blog 3" imageUrl="https://via.placeholder.com/150" />
+          
           {/* Puedes agregar más BlogCards según sea necesario */}
         </div>
       )}

@@ -41,3 +41,12 @@
 .formstyle button:active{
     background-color: rgba(0, 0, 0, 0.5);
 }
+.error{
+    color: red;
+    font-weight: 400;
+}
+.select{
+    font-weight: 400;
+    background-color: #22295b;
+    padding: 0.5rem;
+}
