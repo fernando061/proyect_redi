@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-
+import styles from './form.module.css';
 const MyForm = () => {
     const {
         register,
@@ -13,26 +13,26 @@ const MyForm = () => {
       };
     
       return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.formstyle}>
+          <div className='flex flex-col'>
             <label htmlFor="title">Título:</label>
             <input {...register('title', { required: true })} id="title" />
             {errors.title && <span>Este campo es obligatorio</span>}
           </div>
     
-          <div>
+          <div className='flex flex-col'>
             <label htmlFor="content">Contenido:</label>
             <input {...register('content', { required: true })} id="content" />
             {errors.content && <span>Este campo es obligatorio</span>}
           </div>
     
-          <div>
+          <div className='flex flex-col'>
             <label htmlFor="files">Archivos:</label>
             <input {...register('files', { required: true })} type="file" id="files" multiple />
             {errors.files && <span>Este campo es obligatorio</span>}
           </div>
     
-          <div>
+          <div className='flex flex-col'>
             <label htmlFor="category">Categoría:</label>
             <select {...register('category', { required: true })} id="category">
               <option value="blog">Blog</option>
