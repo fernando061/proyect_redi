@@ -1,35 +1,39 @@
+import { useState } from "react";
 import { useRouter } from 'next/router';
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 import LoginForm from "./LoginForm";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-const Header = () => {
+const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
   const router = useRouter();
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [showBlogs, setShowBlogs] = useState(false);
 
-  const handleClick = () => {
-    console.log("Clicked!");
+  const handleClick = (showFunction) => {
     setIsOpen(!isOpen);
-    setShowBlogs(!showBlogs);
+    setShowBlogs(false);
+    setShowEvents(false);
+    setShowNews(false);
+    //setIsLoginFormOpen(false);
+
+    if (showFunction) {
+      showFunction(true);
+    }
   };
   const toggleLoginForm = () => {
     setIsLoginFormOpen(!isLoginFormOpen);
   };
+  const handleHomeClick = () => {
+    // Actualizar el estado según sea necesario (por ejemplo, ocultar blogs, eventos y noticias)
+    setShowBlogs(false);
+    setShowEvents(false);
+    setShowNews(false);
 
-  useEffect(() => {
-    if (showBlogs) {
-      // Verifica si ya estamos en la página de inicio antes de redirigir
-      if (router.pathname !== '/') {
-        router.push('/');
-        console.log('showBlogs inside useEffect:', showBlogs);
-      }
-    }
-  }, [showBlogs, router]);
+    // Navegar a la ruta de inicio
+    router.push('/');
+  };
 
   return (
     <>
@@ -71,28 +75,33 @@ const Header = () => {
       <nav className="bg-black">
         <div className="max-w-screen-xl px-4 py-3 mx-auto">
           <div className="flex items-center justify-start">
-            <ul className="hidden md:flex font-semibold text-1xl lg:text-[20px]">
-              <li className="mr-4 lg:mr-8 text-white hover:text-blue-700">
-                <Link href="/">
+            <ul className="hidden md:flex font-semibold text-1xl lg:text-[20px] cursor-pointer">
+              <li 
+              onClick={handleHomeClick}
+              className="mr-4 lg:mr-8 text-white hover:text-blue-700">
+                
                   <span>Home</span>
-                </Link>
+                
               </li>
-              <li
-                onClick={ handleClick }
-                className="mr-4 lg:mr-8 text-white hover:text-blue-700"
-              >
+              <li 
+              onClick={() => handleClick(setShowBlogs)}
+              className="mr-4 lg:mr-8 text-white hover:text-blue-700">
                 <Link href="/">
                   <span>blogs</span>
                 </Link>
               </li>
-              <li className="mr-4 lg:mr-8 text-white hover:text-blue hover:text-blue-700">
-                <Link href="/events">
+              <li
+              onClick={() => handleClick(setShowEvents)}
+              className="mr-4 lg:mr-8 text-white hover:text-blue hover:text-blue-700">
+                <Link href="/">
                   <span>events</span>
                 </Link>
               </li>
-              <li className="mr-4 lg:mr-8 text-white hover:text-blue-700">
-                <Link href="/news">
-                  <span>news</span>
+              <li 
+              onClick={() => handleClick(setShowNews)}
+              className="mr-4 lg:mr-8 text-white hover:text-blue-700">
+                <Link href="/">
+                  <spa>news</spa>
                 </Link>
               </li>
             </ul>
@@ -121,13 +130,10 @@ const Header = () => {
                     </Link>
                   </li>
                   <li
-                    onClick={() => {
-                      handleClick();
-                      handleBlogsClick();
-                    }}
+                    onClick={handleClick}
                     className="py-5 hover:text-blue-600 cursor-pointer"
                   >
-                    <Link href="/">
+                    <Link href="/event">
                       <span>blogs</span>
                     </Link>
                   </li>
@@ -183,3 +189,4 @@ const Header = () => {
 };
 
 export default Header;
+
