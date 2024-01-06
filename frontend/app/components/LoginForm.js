@@ -1,54 +1,30 @@
-// components/LoginForm.js
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import Link from "next/link";
-import { login } from '../../services/auth';
-=======
->>>>>>> refs/remotes/origin/main
+import { useRouter } from 'next/router';
 
 import Link from "next/link";
 import {login} from "../service/UserService"
-const LoginForm = ({ onClose }) => {
+const LoginForm = ( ) => {
+
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-<<<<<<< HEAD
-  const handleLogin = async () => {
-    
-    if (!email || !password) {
-      setError('Please enter both email and password.');
-      return;
-    }
-
-    try {
-      const credentials = { email, password };
-      const response = await login(credentials);
-      console.log('Additional actions:', response);
-
-      // Si necesitas realizar alguna acción adicional después del login, puedes hacerlo aquí
-      onClose();
-    } catch (error) {
-      // Manejo de errores específicos si es necesario
-      setError('Error in login. Please try again.');
-    }
-=======
   const handleLogin = async (event) => {
     event.preventDefault(); 
-    console.log("Hola mundo")
     try {
       const loginModel = {email:email,password:password}
       await login(loginModel)
-      onClose();
+      
+      router.push('/dashboard');
      
   } catch (error) {
       console.log(error)
       setError(error.message)
   }
   
->>>>>>> refs/remotes/origin/main
   };
-
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-50"
@@ -56,7 +32,6 @@ const LoginForm = ({ onClose }) => {
     >
       <div
         className="w-full bg-white rounded-lg shadow border border-black sm:max-w-md"
-      
       >
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl text-gray-900">
