@@ -2,10 +2,14 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, setShowBlogs, setShowEvents, setShowNews }) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header
+        setShowBlogs={setShowBlogs}
+        setShowEvents={setShowEvents}
+        setShowNews={setShowNews}
+      />
       <main className="flex-1">
         {children}
       </main>
