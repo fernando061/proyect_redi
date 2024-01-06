@@ -1,5 +1,5 @@
-//components/login/LoginForm
-import React, { useState } from "react";
+import { useRouter } from 'next/router';
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
@@ -7,16 +7,29 @@ import LoginForm from "./LoginForm";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
+  const router = useRouter();
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [showBlogs, setShowBlogs] = useState(false);
 
   const handleClick = () => {
     console.log("Clicked!");
     setIsOpen(!isOpen);
+    setShowBlogs(!showBlogs);
   };
   const toggleLoginForm = () => {
     setIsLoginFormOpen(!isLoginFormOpen);
   };
+
+  useEffect(() => {
+    if (showBlogs) {
+      // Verifica si ya estamos en la página de inicio antes de redirigir
+      if (router.pathname !== '/') {
+        router.push('/');
+        console.log('showBlogs inside useEffect:', showBlogs);
+      }
+    }
+  }, [showBlogs, router]);
 
   return (
     <>
@@ -64,8 +77,11 @@ const Header = () => {
                   <span>Home</span>
                 </Link>
               </li>
-              <li className="mr-4 lg:mr-8 text-white hover:text-blue-700">
-                <Link href="/home">
+              <li
+                onClick={ handleClick }
+                className="mr-4 lg:mr-8 text-white hover:text-blue-700"
+              >
+                <Link href="/">
                   <span>blogs</span>
                 </Link>
               </li>
@@ -76,7 +92,7 @@ const Header = () => {
               </li>
               <li className="mr-4 lg:mr-8 text-white hover:text-blue-700">
                 <Link href="/news">
-                  <spa>news</spa>
+                  <span>news</span>
                 </Link>
               </li>
             </ul>
@@ -105,10 +121,13 @@ const Header = () => {
                     </Link>
                   </li>
                   <li
-                    onClick={handleClick}
+                    onClick={() => {
+                      handleClick();
+                      handleBlogsClick();
+                    }}
                     className="py-5 hover:text-blue-600 cursor-pointer"
                   >
-                    <Link href="/event">
+                    <Link href="/">
                       <span>blogs</span>
                     </Link>
                   </li>
