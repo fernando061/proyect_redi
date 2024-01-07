@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainLayout from '../app/layouts/MainLayout';
 import Header from '../app/components/Header';
 import Body from '../app/components/HomePage';
@@ -88,3 +88,5 @@ const HomePage = () => {
     </MainLayout>
   );
 };
+
+export default HomePage;
