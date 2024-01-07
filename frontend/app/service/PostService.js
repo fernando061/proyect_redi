@@ -4,7 +4,7 @@ const URL = 'http://127.0.0.1:5000'// Reemplaza con la URL de tu API
 
 export const getBlogs = async () => {
   try {
-    const response = await axios.get(`${URL}/blogs`);
+    const response = await axios.get(`${URL}/post/get_type_photo/blog`);
     return response.data;
   } catch (error) {
     console.error('Error fetching blogs:', error);
@@ -14,7 +14,7 @@ export const getBlogs = async () => {
 
 export const getEvents = async () => {
   try {
-    const response = await axios.get(`${URL}/events`);
+    const response = await axios.get(`${URL}/post/get_type_photo/events`);
     return response.data;
   } catch (error) {
     console.error('Error fetching events:', error);
@@ -24,7 +24,7 @@ export const getEvents = async () => {
 
 export const getNews = async () => {
   try {
-    const response = await axios.get(`${URL}/news`);
+    const response = await axios.get(`${URL}/post/get_type_photo/news`);
     return response.data;
   } catch (error) {
     console.error('Error fetching news:', error);

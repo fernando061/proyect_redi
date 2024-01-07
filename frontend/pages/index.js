@@ -18,16 +18,17 @@ const HomePage = () => {
   const [events, setEvents] = useState([]);
   const [news, setNews] = useState([]);
 
-  /*const [showBlogs, setShowBlogs] = useState(false);
+  const [showBlogs, setShowBlogs] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
-  const [showNews, setShowNews] = useState(false);*/
+  const [showNews, setShowNews] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Obtener datos de blogs
         const blogsData = await getBlogs();
-        setBlogs(blogsData);
+        console.log(blogsData.content)
+        setBlogs(blogsData.content);
 
         // Obtener datos de eventos
         const eventsData = await getEvents();
@@ -53,7 +54,7 @@ const HomePage = () => {
         <div>
           <h1>Latest Blogs</h1>
           {blogs.map(blog => (
-            <BlogCard key={blog.id} title={blog.title} imageUrl={blog.imageUrl} />
+            <BlogCard key={blog.id} title={blog.title} imageUrl={blog.photos[0].url_file} />
           ))}
         </div>
       )}

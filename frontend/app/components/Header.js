@@ -25,7 +25,7 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
   const toggleLoginForm = () => {
     setIsLoginFormOpen(!isLoginFormOpen);
   };
-  /*const handleHomeClick = () => {
+  const handleHomeClick = () => {
     // Actualizar el estado según sea necesario (por ejemplo, ocultar blogs, eventos y noticias)
     setShowBlogs(false);
     setShowEvents(false);
@@ -33,10 +33,10 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
 
     // Navegar a la ruta de inicio
     router.push('/');
-  };*/
-  if (!showFunction) {
-    router.push('/');
-  }
+  };
+  // if (!showFunction) {
+  //   router.push('/');
+  // }
 
 
   return (
