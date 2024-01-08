@@ -4,12 +4,13 @@
     flex-direction: column;
     justify-content: space-around;
     /* align-content: space-between; 191d3a; */
-    border:  1px solid rgb(255, 0, 0);
+    /*border:  1px solid rgb(255, 0, 0);*/
     padding: 2rem;
     border-radius: 4px;
+    background-color: #182237;
 }
 .formstyle input{
-    background-color: #22295b;
+    background-color: #29415d;
     font-weight: 400;
     border-radius: 4px;
     padding: 0.5rem;
@@ -27,7 +28,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
 
-    background-color: rgb(24 34 55 / 1);
+    background-color: #4d82bc;
     border-radius: 7px;
     /* color: rgb(109, 11, 11); */
     transition: background-color 0.3s ease-in-out;
@@ -42,11 +43,11 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 .error{
-    color: red;
+    color: #ff4d4d;
     font-weight: 400;
 }
 .select{
     font-weight: 400;
-    background-color: #22295b;
+    background-color: #29415d;
     padding: 0.5rem;
 }

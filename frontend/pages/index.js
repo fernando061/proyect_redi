@@ -51,7 +51,7 @@ const HomePage = () => {
      
      {showBlogs && (
         // Renderizar lista de blogs
-        <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
           <h1>Latest Blogs</h1>
           {blogs.map(blog => (
             <BlogCard key={blog.id} title={blog.title} imageUrl={blog.photos[0].url_file} />
@@ -61,20 +61,20 @@ const HomePage = () => {
 
       {showEvents && (
         // Renderizar lista de eventos
-        <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
           <h1>Upcoming Events</h1>
           {events.map(event => (
-            <EventCard key={event.id} title={event.title} imageUrl={event.imageUrl} />
+            <EventCard key={event.id} title={event.title} imageUrl={blog.photos[0].url_file} />
           ))}
         </div>
       )}
 
       {showNews && (
         // Renderizar lista de noticias
-        <div>
-          <h1>Latest News</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+          <h1 className="font-bold">Latest News</h1>
           {news.map(newsItem => (
-            <NewsCard key={newsItem.id} title={newsItem.title} imageUrl={newsItem.imageUrl} />
+            <NewsCard key={newsItem.id} title={newsItem.title} imageUrl={blog.photos[0].url_file} />
           ))}
         </div>
       )}
