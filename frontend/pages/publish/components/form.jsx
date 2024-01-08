@@ -19,13 +19,6 @@ const MyForm = () => {
             <input {...register('title', { required: true })} id="title" />
             {errors.title && <span className={styles.error}>Este campo es obligatorio</span>}
           </div>
-    
-          <div className='flex flex-col'>
-            <label htmlFor="content">Contenido:</label>
-            <input {...register('content', { required: true })} id="content" />
-            {errors.content && <span className={styles.error}>Este campo es obligatorio</span>}
-          </div>
-    
           <div className='flex flex-col'>
             <label htmlFor="files">Archivos:</label>
             <input {...register('files', { required: true })} type="file" id="files" multiple />
@@ -42,7 +35,11 @@ const MyForm = () => {
             </select>
             {errors.category && <span className={styles.error}>Selecciona una categoría</span>}
           </div>
-    
+          <div className='flex flex-col'>
+            <label htmlFor="content">Contenido:</label>
+            <textarea {...register('content', { required: true })} id="content" />
+            {errors.content && <span className={styles.error}>Este campo es obligatorio</span>}
+          </div>
           <button type="submit">Enviar</button>
         </form>
       );

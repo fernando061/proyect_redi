@@ -1,5 +1,6 @@
 .formstyle{
-    height: 500px;
+    height: 800px;
+    width: 600px;
     display:  flex;
     flex-direction: column;
     justify-content: space-around;
@@ -9,7 +10,8 @@
     border-radius: 4px;
     background-color: #182237;
 }
-.formstyle input{
+.formstyle input,
+.formstyle textarea{
     background-color: #29415d;
     font-weight: 400;
     border-radius: 4px;
@@ -17,8 +19,12 @@
     border: none;
 }
 
-.formstyle input:focus{
+.formstyle input,
+.formstyle textarea:focus{
     outline: none;
+}
+.formstyle textarea{
+    height: 300px;
 }
 
 .formstyle label{

@@ -6,6 +6,7 @@ class EnumTypePost(Enum):
     post   = "post"
     event  = "event"
     others = "others"
+    news   = "news"
 
 
 class PostDto:
@@ -49,7 +50,7 @@ class PostDto:
     @type_post.setter
     def type_post(self, value):
         if value and value not in {member.value for member in EnumTypePost}:
-            raise ValueError("This type of post does not exist. only allowed:  blog,post,event and others.")
+            raise ValueError("This type of post does not exist. only allowed:  blog,post,event,news and others.")
         if value is None:
             raise ValueError("The type_post is required.")
         self._type_post = value
