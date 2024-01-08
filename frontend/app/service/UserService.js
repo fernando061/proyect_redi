@@ -1,4 +1,3 @@
-
 import axios from "axios";
 // const URL = `${process.env.REACT_APP_API}`
 const URL = 'http://127.0.0.1:5000'
@@ -43,6 +42,15 @@ const isAuthenticated =  () => {
   return false
 
 }
+export const getTokenData = () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const tokenPayload = JSON.parse(atob(token.split('.')[1])); // Decodifica el payload de la token
+    return tokenPayload;
+  }
+  return null;
+};
+
 export{
     login,
     isAuthenticated

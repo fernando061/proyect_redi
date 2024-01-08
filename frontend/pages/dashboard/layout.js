@@ -3,6 +3,7 @@ import NavBar from "../../app/components/dashboard/navbar/Navbar";
 import SideBar from "../../app/components/dashboard/sidebar/SideBar";
 import { useEffect } from 'react';
 import { isAuthenticated } from '../../app/service/UserService'
+import AdminGuard from '../../app/guard/adminGuard'
 const Layout = ({ children }) => {
 
   const router = useRouter();
@@ -28,4 +29,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default AdminGuard(Layout);
