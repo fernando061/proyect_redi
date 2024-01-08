@@ -1,9 +1,9 @@
 import React from 'react'
 import SideBar from "../../../app/shared/components/sidebar/SideBar";
 import styles from '../index.module.css';
-import dynamic from 'next/dynamic'
 import "tailwindcss/tailwind.css";
 import  MyForm  from '../components/form';
+
 // const NoSSR = dynamic(() => import('../components/form'), { ssr: false })
 
 const Index = () => {
@@ -19,14 +19,9 @@ const Index = () => {
                 <hr />
             </div>
             <div className='mt-20'></div>
-            <div className={styles.container}>
-
-             
+            <div className={styles.container}>           
                 <MyForm/>
-
-             
             </div>
-
           </div>
         </div>
   )

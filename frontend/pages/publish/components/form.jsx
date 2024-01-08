@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import styles from './form.module.css';
+import { savePost } from '@/app/service/PostService';
 const MyForm = () => {
     const {
         register,
@@ -7,9 +8,20 @@ const MyForm = () => {
         formState: { errors },
       } = useForm();
     
-      const onSubmit = (data) => {
-          
-        console.log(data); // Aquí puedes manejar los datos del formulario
+      const onSubmit = async(data) => {
+        const formData = new FormData();
+        formData.append('title', data.title);
+        formData.append('content', data.content);
+        formData.append('type_post', data.category);
+        for (let i = 0; i < data.files.length; i++) {
+          formData.append('file[]', data.files[i]);
+        }
+        // formData.append('file[]', data.files);
+        // console.log(data.files); 
+        // console.log(data.files[0]); 
+
+        await savePost(formData)
+        console.log("guardado")
       };
     
       return (

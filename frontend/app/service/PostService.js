@@ -31,3 +31,19 @@ export const getNews = async () => {
     throw error;
   }
 };
+
+export const savePost = async (formData) => {
+  try {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const response = await axios.post(`${URL}/post/publish_post`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+  } catch (error) {
+    console.log(error)
+  }
+  
+}

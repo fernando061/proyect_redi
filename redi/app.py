@@ -21,7 +21,7 @@ from firebase_admin import credentials
 def create_app(config_name):
     app = Flask(__name__)
     CORS(app=app, origins='*', methods=['GET',
-     'POST', 'PUT', 'DELETE'], allow_headers='Content-Type')
+     'POST', 'PUT', 'DELETE'], allow_headers=['Content-Type','Authorization'])
     if config_name == 'development':
         app.config.from_object(DevelopmentConfig)
     else:

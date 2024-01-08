@@ -20,15 +20,17 @@ publish_post_args = {
 }
 post_controller_bp = Blueprint('post_controller', __name__)
 @post_controller_bp.route('/post/publish_post', methods=['POST'])
-# @user_required
+@user_required
 def publishPost():
     try:
+        print("asasasas")
+        print(request.form.get('content'))
+        print("asasasas")
         user_id = getattr(g, 'user_id', None)
         postDto = PostDto(request.form.get('title'),request.form.get('event_date'),request.form.get('content'),request.form.get('type_post'),user_id)
-        print('aaaaa##############')
         print(postDto.user_id)
         files = request.files.getlist('file[]')
-        
+        print(request.form.getlist('file[]'))
         if 'file[]' not in request.files:
             return {
                 'status': False,

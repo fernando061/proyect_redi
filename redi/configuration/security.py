@@ -99,8 +99,10 @@ def admin_required(fn):
     return wrapper
 
 def user_required(fn):
+    print("asasasas")
     @wraps(fn)
     def wrapper(*args, **kwargs):
+        print("asasasas")
         verify_jwt_in_request()
         print(verify_jwt_in_request())
         roles = verify_jwt_in_request()[1].get('roles', [])
