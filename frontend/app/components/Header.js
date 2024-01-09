@@ -5,7 +5,7 @@ import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 import LoginForm from "./LoginForm";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-
+import logoPng from '@/public/logo.png'
 const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
   const router = useRouter();
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
@@ -45,7 +45,7 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
         <div className="flex justify-between items-center mx-auto max-w-screen-xl p-4">
           {/* Logo centered */}
           <div className="mx-auto space-x-3 rtl:space-x-reverse logo-container">
-            <img src="./logo.png" className="h-9 my-0" alt="Your Logo" />
+            <img src={logoPng.src} className="h-9 my-0" alt="Your Logo" />
           </div>
 
           <div className=" hidden md:flex items-center space-x-6 rtl:space-x-reverse">

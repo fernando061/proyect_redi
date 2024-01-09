@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-12">         
           <div className="lg:col-span-4 col-span-12 mb-6 md:mb-0">
             <a href="/">
-              <img className="h-24" src="./footer-logo.png" alt="" />
+              <img className="h-24" src="./footer-" alt="" />
             </a>
             <p className="mt-6">
               redi existe para servir como base invisible que optimiza y unifica
