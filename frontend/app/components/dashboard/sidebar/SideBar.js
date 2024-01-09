@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from 'next/router';
 import MenuLink from "./MenuLink";
 import {
   MdDashboard,
@@ -7,7 +8,7 @@ import {
   MdShoppingBag,
   MdLogout, // Excluimos esta importación
 } from "react-icons/md";
-
+import {logout} from "../../../service/UserService"
 const menuItems = [
   {
     title: "Pages",
@@ -37,7 +38,12 @@ const menuItems = [
 ];
 
 const SideBar = () => {
-  // Eliminamos la autenticación del usuario
+  const router = useRouter();
+  const handleLogout = () =>{
+    logout();
+    router.push('/');
+  }
+
   return (
     <div className="sticky top-40">
       <div className="flex items-center gap-20 mb-20">
@@ -64,7 +70,8 @@ const SideBar = () => {
           </li>
         ))}
       </ul>
-      <button className="p-5 my-1 flex items-center gap-10 cursor-pointer rounded-lg text-white bg-none border-none w-full hover:bg-gray-700">
+      <button className="p-5 my-1 flex items-center gap-10 cursor-pointer rounded-lg text-white bg-none border-none w-full hover:bg-gray-700"
+        onClick={handleLogout}>
         <MdLogout />
         Logout
       </button>

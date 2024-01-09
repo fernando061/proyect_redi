@@ -42,6 +42,9 @@ const isAuthenticated =  () => {
   return false
 
 }
+const logout =  () => {
+  localStorage.removeItem('token');
+}
 export const getTokenData = () => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -53,7 +56,8 @@ export const getTokenData = () => {
 
 export{
     login,
-    isAuthenticated
+    isAuthenticated,
+    logout
 }
 
 
