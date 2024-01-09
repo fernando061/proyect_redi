@@ -7,7 +7,7 @@ import "tailwindcss/tailwind.css";
 import LoginForm from "./LoginForm";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
+const Header = ({ setShowBlogs, setShowEvents, setShowNews }) => {
   const router = useRouter();
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +45,13 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
         <div className="flex justify-between items-center mx-auto max-w-screen-xl p-4">
           {/* Logo centered */}
           <div className="mx-auto space-x-3 rtl:space-x-reverse logo-container">
-            <img src="./logo.png" className="h-9 my-0" alt="Your Logo" />
+            <Image
+              src="/logo.png"
+              alt="Your Logo"
+              width={160} // Ajusta el ancho según tus necesidades
+              height={90} // Ajusta la altura según tus necesidades
+              className="h-9 my-0" // Clases de estilo adicionales
+            />
           </div>
 
           <div className=" hidden md:flex items-center space-x-6 rtl:space-x-reverse">
