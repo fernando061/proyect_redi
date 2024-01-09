@@ -1,6 +1,6 @@
 .formstyle{
-    height: 800px;
-    width: 600px;
+   /* height: 800px;
+    width: 600px;*/
     display:  flex;
     flex-direction: column;
     justify-content: space-around;
@@ -9,6 +9,7 @@
     padding: 2rem;
     border-radius: 4px;
     background-color: #182237;
+    /*overflow-x: hidden;*/
 }
 .formstyle input,
 .formstyle textarea{

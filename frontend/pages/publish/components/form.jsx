@@ -25,20 +25,20 @@ const MyForm = () => {
       };
     
       return (
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.formstyle}>
-          <div className='flex flex-col'>
-            <label htmlFor="title">Título:</label>
-            <input {...register('title', { required: true })} id="title" />
+        <form onSubmit={handleSubmit(onSubmit)} className={`mx-auto ${styles.formstyle} w-full md:max-w-md max-w-lg lg:max-w-lg xl:max-w-xl`}>
+          <div className='flex flex-col mb-4'>
+            <label htmlFor="title" >Título:</label>
+            <input {...register('title', { required: true })} id="title" className="p-2 text-sm md:text-base"/>
             {errors.title && <span className={styles.error}>Este campo es obligatorio</span>}
           </div>
-          <div className='flex flex-col'>
+          <div className='flex flex-col mb-4'>
             <label htmlFor="files">Archivos:</label>
             <input {...register('files', { required: true })} type="file" id="files" multiple />
             {errors.files && <span className={styles.error}>Este campo es obligatorio</span>}
           </div>
     
-          <div className='flex flex-col'>
-            <label htmlFor="category">Categoría:</label>
+          <div className='flex flex-col mb-4'>
+            <label htmlFor="category" className="text-sm md:text-base">Categoría:</label>
             <select className={styles.select} {...register('category', { required: true })} id="category">
               <option value="blog">Blog</option>
               <option value="post">Post</option>
@@ -47,14 +47,14 @@ const MyForm = () => {
             </select>
             {errors.category && <span className={styles.error}>Selecciona una categoría</span>}
           </div>
-          <div className='flex flex-col'>
-            <label htmlFor="content">Contenido:</label>
-            <textarea {...register('content', { required: true })} id="content" />
+          <div className='flex flex-col mb-4'>
+            <label htmlFor="content"  className="text-sm md:text-base">Contenido:</label>
+            <textarea {...register('content', { required: true })} id="content" className="p-2 text-sm md:text-base" />
             {errors.content && <span className={styles.error}>Este campo es obligatorio</span>}
           </div>
-          <button type="submit">Enviar</button>
+          <button type="submit" className="py-2 px-4 text-sm md:text-base">Enviar</button>
         </form>
       );
 }
 
-export default MyForm
+export default MyForm;
