@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 import LoginForm from "./LoginForm";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
+const Header = ({ setShowBlogs, setShowEvents, setShowNews }) => {
   const router = useRouter();
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -16,12 +17,12 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
     setShowBlogs(false);
     setShowEvents(false);
     setShowNews(false);
-  
+
     if (showFunction) {
       showFunction(true);
     }
   };
-  
+
   const toggleLoginForm = () => {
     setIsLoginFormOpen(!isLoginFormOpen);
   };
@@ -32,12 +33,11 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
     setShowNews(false);
 
     // Navegar a la ruta de inicio
-    router.push('/');
+    router.push("/");
   };
   // if (!showFunction) {
   //   router.push('/');
   // }
-
 
   return (
     <>
@@ -45,7 +45,14 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
         <div className="flex justify-between items-center mx-auto max-w-screen-xl p-4">
           {/* Logo centered */}
           <div className="mx-auto space-x-3 rtl:space-x-reverse logo-container">
-            <img src="./logo.png" className="h-9 my-0" alt="Your Logo" />
+            {/*<Image src="./logo.png" className="h-9 my-0" alt="Your Logo" />*/}
+            <Image
+              src="/logo.png"
+              alt="Your Logo"
+              width={170} // Ajusta el ancho según tus necesidades
+              height={100} // Ajusta la altura según tus necesidades
+              className="h-9 my-0" // Clases de estilo adicionales
+            />
           </div>
 
           <div className=" hidden md:flex items-center space-x-6 rtl:space-x-reverse">
@@ -80,30 +87,32 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
         <div className="max-w-screen-xl px-4 py-3 mx-auto">
           <div className="flex items-center justify-start">
             <ul className="hidden md:flex font-semibold text-1xl lg:text-[20px] cursor-pointer">
-              <li 
-              onClick={handleHomeClick}
-              className="mr-4 lg:mr-8 text-white hover:text-blue-700">
-                
-                  <span>Home</span>
-                
+              <li
+                onClick={handleHomeClick}
+                className="mr-4 lg:mr-8 text-white hover:text-blue-700"
+              >
+                <span>Home</span>
               </li>
-              <li 
-              onClick={() => handleClick(setShowBlogs)}
-              className="mr-4 lg:mr-8 text-white hover:text-blue-700">
+              <li
+                onClick={() => handleClick(setShowBlogs)}
+                className="mr-4 lg:mr-8 text-white hover:text-blue-700"
+              >
                 <Link href="/">
                   <span>blogs</span>
                 </Link>
               </li>
               <li
-              onClick={() => handleClick(setShowEvents)}
-              className="mr-4 lg:mr-8 text-white hover:text-blue hover:text-blue-700">
+                onClick={() => handleClick(setShowEvents)}
+                className="mr-4 lg:mr-8 text-white hover:text-blue hover:text-blue-700"
+              >
                 <Link href="/">
                   <span>events</span>
                 </Link>
               </li>
-              <li 
-              onClick={() => handleClick(setShowNews)}
-              className="mr-4 lg:mr-8 text-white hover:text-blue-700">
+              <li
+                onClick={() => handleClick(setShowNews)}
+                className="mr-4 lg:mr-8 text-white hover:text-blue-700"
+              >
                 <Link href="/">
                   <spa>news</spa>
                 </Link>
@@ -193,4 +202,3 @@ const Header = ({setShowBlogs, setShowEvents, setShowNews }) => {
 };
 
 export default Header;
-

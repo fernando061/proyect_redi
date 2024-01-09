@@ -1,12 +1,19 @@
+import Image from 'next/image';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="bg-gray-900 text-gray-200">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-      <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-12">         
+        <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-12">
           <div className="lg:col-span-4 col-span-12 mb-6 md:mb-0">
             <a href="/">
-              <img className="h-24" src="./footer-logo.png" alt="" />
+              <Image
+                src="/footer-logo.png"
+                alt="Tu descripción"
+                width={180}
+                height={80} 
+                className="h-24" 
+              />
             </a>
             <p className="mt-6">
               redi existe para servir como base invisible que optimiza y unifica
@@ -60,7 +67,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="lg:col-span-3 md:col-span-4 col-span-12">
-          <h5 className="tracking-wide text-gray-100 font-semibold">
+            <h5 className="tracking-wide text-gray-100 font-semibold">
               social
             </h5>
             <ul className="list-none space-y-2 mt-6">
@@ -87,7 +94,8 @@ const Footer = () => {
       <div className="border-t border-slate-700">
         <div className="md:text-center text-center container mx-auto py-7 px-6">
           <p className="mb-0">
-            &copy; guión realidad dicha infinita | ningún derecho reservado © 200,000 a.c. - {currentYear} d.c.
+            &copy; guión realidad dicha infinita | ningún derecho reservado ©
+            200,000 a.c. - {currentYear} d.c.
           </p>
         </div>
       </div>
