@@ -17,11 +17,10 @@ const Index = () => {
             <div className={styles.title}>
                 <h1 className='text-left'>Register</h1>
                 <hr />
-            </div>
+            </div>S
             <div className='mt-20'></div>
             <div className={styles.container}>
 
-             
               <MyForm/>
 
              

@@ -27,7 +27,8 @@ const Index = () => {
           <h1 className='text-right'>Publicaciones</h1>
           <hr className="mt-2 md:mt-4" />
           <div className='mt-5'>
-            <button className={styles.btn}><a href="publish/register">Add</a></button>
+            <button className={styles.btn}
+            onClick={() => router.push('/publish/register')}>Add</button>
           </div>
         </div>
         <div className='mt-4 md:mt-8'></div>
