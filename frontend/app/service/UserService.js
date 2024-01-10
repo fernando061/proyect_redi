@@ -8,11 +8,11 @@ const login = async(model)=>{
         
         if (response.status === 200) {
             const { data } = response;
-            const {token} = data.data
+            const user = data.data
             // Check if the response contains a token
-            if (token) {
+            if (user) {
               // Store the token in local storage or state based on your needs
-              localStorage.setItem("token", token);
+              localStorage.setItem("token", JSON.stringify(user));
               console.log("Login successful");
     
               // Close the form after performing the action
@@ -35,7 +35,7 @@ const login = async(model)=>{
     }
 }
 const isAuthenticated =  () => {
-  const token = localStorage.getItem("token");
+  const token =  JSON.parse(localStorage.getItem("token"));
   console.log(token)
   if(token && token !== "undefined" && token !== "null") return true
 
@@ -46,9 +46,9 @@ const logout =  () => {
   localStorage.removeItem('token');
 }
 export const getTokenData = () => {
-  const token = localStorage.getItem('token');
+  const token = JSON.parse(localStorage.getItem('token'));
   if (token) {
-    const tokenPayload = JSON.parse(atob(token.split('.')[1])); // Decodifica el payload de la token
+    const tokenPayload = JSON.parse(atob(token.token.split('.')[1])); // Decodifica el payload de la token
     return tokenPayload;
   }
   return null;

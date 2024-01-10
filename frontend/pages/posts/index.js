@@ -3,18 +3,21 @@ import { isAuthenticated } from '../../app/service/UserService'
 import SideBar from "../../app/shared/components/sidebar/SideBar";
 import NavBar from "../../app/shared/components/navbar/Navbar";
 import CardPost from "./components/cardPost";
+import {getPost} from '@/app/service/PostService'
 import styles from './index.module.css';
 import "tailwindcss/tailwind.css";
 const Posts = () => {
-
+  const [post, setPost] = useState([]);
     useEffect(() => {
-        // Verificar la autenticación aquí
-        // const _isAuthenticated = isAuthenticated();
-        // console.log("Hola",_isAuthenticated)
-        // if (!_isAuthenticated) {
-        //   router.push('/login'); 
-        // }
+      dataPost()
+      console.log(post)
       }, []);
+
+      const dataPost = async() =>{
+        const _post = await getPost()
+        console.log(_post.content)
+        setPost(_post.content)
+      }
 
 
   return (
@@ -26,11 +29,14 @@ const Posts = () => {
       <NavBar />
       
       <div className='mt-4 md:mt-8'></div>
-      <div className='container border-neutral-500	border-solid border h-screen'>
-
-        <CardPost/>
-        <CardPost/>
-        <CardPost/>
+      <div className='container border-neutral-500	border-solid border '>
+      {
+      post.map(item => (
+            <CardPost key={item.id} title={item.content} imageUrl={item.photos[0].url_file} />
+          ))
+          
+          
+          }
       </div>
 
 

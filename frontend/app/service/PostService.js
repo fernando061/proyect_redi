@@ -48,3 +48,13 @@ export const savePost = async (formData) => {
   }
   
 }
+
+export const getPost = async () => {
+  try {
+    const response = await axios.get(`${URL}/post`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching news:', error);
+    throw error;
+  }
+};
