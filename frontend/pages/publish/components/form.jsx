@@ -45,14 +45,14 @@ const MyForm = () => {
               <option value="news">News</option>
               <option value="others">Others</option>
             </select>
-            {errors.category && <span className={styles.error}>Selecciona una categoría</span>}
+            {errors.category && <span className={styles.error}>Select a category</span>}
           </div>
           <div className='flex flex-col mb-4'>
-            <label htmlFor="content"  className="text-sm md:text-base">Contenido:</label>
+            <label htmlFor="content"  className="text-sm md:text-base">Content:</label>
             <textarea {...register('content', { required: true })} id="content" className="p-2 text-sm md:text-base" />
-            {errors.content && <span className={styles.error}>Este campo es obligatorio</span>}
+            {errors.content && <span className={styles.error}>This fiel is required</span>}
           </div>
-          <button type="submit" className="py-2 px-4 text-sm md:text-base">Enviar</button>
+          <button type="submit" className="py-2 px-4 text-sm md:text-base">Send</button>
         </form>
       );
 }

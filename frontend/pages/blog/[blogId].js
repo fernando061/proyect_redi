@@ -46,13 +46,14 @@ const BlogDetail = () => {
               alt={`Image related to ${blogDetails.title}`}
               width={550}
               height={400}
+              className="rounded-xl"
             
             />
           </div>
         )}
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 prose">
           {blogDetails ? (
-            <div className="prose">
+            <div>
               <h1 className="text-3xl font-bold mb-4">{blogDetails.title}</h1>
               <p>{blogDetails.content}</p>
               {/* Otros detalles del blog según tu modelo de datos */}
