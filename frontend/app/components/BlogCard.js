@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 //components/BlogCard
-const BlogCard = ({ title, imageUrl, contentn, blogId }) => {
+const BlogCard = ({ title, imageUrl, content, blogId }) => {
   return (
     <Link href={`/blog/${blogId}`}>
     <div className="border border-[#2E4053] bg-[#EAFAF1] rounded-lg bg-rounded-lg p-4 shadow-md m-5">

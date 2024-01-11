@@ -17,10 +17,8 @@ const BlogDetail = () => {
   useEffect(() => {
     const fetchBlogDetails = async () => {
       try {
-        // Utiliza tu servicio getBlogs para obtener todos los blogs
         const blogsData = await getBlogs();
         
-        // Busca el blog correspondiente según el blogId
         const details = blogsData.content.find(blog => blog.id.toString() === blogId);
 
         if (details) {
@@ -56,7 +54,6 @@ const BlogDetail = () => {
             <div>
               <h1 className="text-3xl font-bold mb-4">{blogDetails.title}</h1>
               <p>{blogDetails.content}</p>
-              {/* Otros detalles del blog según tu modelo de datos */}
             </div>
           ) : (
             <p>Blog no encontrado</p>

@@ -6,7 +6,6 @@ import Body from '../app/components/HomePage';
 import BlogCard from '../app/components/BlogCard';
 import EventCard from '../app/components/EventCard';
 import NewsCard from '../app/components/NewsCard';
-import Footer from '../app/components/Footer';
 import { getBlogs, getEvents, getNews } from '../app/service/PostService'; 
 import { useRouter } from 'next/router';
 
@@ -23,9 +22,10 @@ const HomePage = () => {
   const [showBlogs, setShowBlogs] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
   const [showNews, setShowNews] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState(null);
 
   const router = useRouter();
-  const { blogId } = router.query;
+  const { blogId, eventId, newsId } = router.query;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,11 +37,11 @@ const HomePage = () => {
 
         // Obtener datos de eventos
         const eventsData = await getEvents();
-        setEvents(eventsData);
+        setEvents(eventsData.content);
 
         // Obtener datos de noticias
         const newsData = await getNews();
-        setNews(newsData);
+        setNews(newsData.content);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -50,11 +50,19 @@ const HomePage = () => {
     // Llamar a la función para cargar datos
     fetchData();
   }, []);
-  const handleBlogClick = (blogId) => {
-    // Navega a la página de detalles del blog al hacer clic en un BlogCard
+
+ const handleBlogClick = (blogId) => {
     router.push(`/blog/${blogId}`);
   };
-
+  
+  const handleEventClick = (eventId) => {
+    router.push(`/event/${eventId}`);
+  };
+  
+  const handleNewsClick = (newsId) => {
+    router.push(`/news/${newsId}`);
+  };
+  
   return (
     <MainLayout setShowBlogs={setShowBlogs} setShowEvents={setShowEvents} setShowNews={setShowNews}>
      
@@ -67,7 +75,8 @@ const HomePage = () => {
             title={blog.title}
             imageUrl={blog.photos[0].url_file}
             blogId={blog.id}
-            onClick={() => handleBlogClick(blog.id)}/>
+            onClick={ handleBlogClick }
+            />
           ))}
         </div>
       )}
@@ -77,7 +86,12 @@ const HomePage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
           <h1>Upcoming Events</h1>
           {events.map(event => (
-            <EventCard key={event.id} title={event.title} imageUrl={blog.photos[0].url_file} />
+            <EventCard key={event.id}
+            title={event.title}
+            imageUrl={event.photos[0].url_file}
+            eventDate={event.event_date}
+            onClick={handleEventClick}
+            />
           ))}
         </div>
       )}
@@ -87,18 +101,22 @@ const HomePage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
           <h1 className="font-bold">Latest News</h1>
           {news.map(newsItem => (
-            <NewsCard key={newsItem.id} title={newsItem.title} imageUrl={blog.photos[0].url_file} />
+            <NewsCard key={newsItem.id}
+            title={newsItem.title}
+            imageUrl={newsItem.photos[0].url_file}
+            newsId={newsItem.id}
+            onClick={ handleNewsClick}/>
           ))}
         </div>
       )}
-      {!showBlogs && !showEvents && !showNews && blogId && (
+     { /*{!showBlogs && !showEvents && !showNews && blogId && (
         // Renderizar la página de detalles del blog
         // Puedes crear y utilizar un componente BlogDetail para esto
         // y pasar el blogId como una propS
         <BlogDetail blogId={blogId} />
-      )}
+      )} */}
 
-      {!showBlogs && !showEvents && !showNews && !blogId && (
+      {!showBlogs && !showEvents && !showNews && (
         // Otras partes de tu página
         <Body />
       )}
