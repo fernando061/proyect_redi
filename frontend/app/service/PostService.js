@@ -35,12 +35,12 @@ export const getNews = async () => {
 
 export const savePost = async (formData) => {
   try {
-    const token = localStorage.getItem('token');
-    console.log(token)
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log(token.token)
     const response = await axios.post(`${URL}/post/publish_post`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      'Authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${token.token}`,
     },
   });
   } catch (error) {

@@ -5,7 +5,8 @@ from service.user_service import UserService
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from webargs import fields, validate
 from webargs.flaskparser import use_args
-from marshmallow import ValidationError 
+from marshmallow import ValidationError
+from models.user import User
 user_controller_bp = Blueprint('user_controller', __name__)
 
 register_args:RegisterRequest = {
@@ -45,7 +46,10 @@ def login(args):
     try:
         loginDto = SimpleNamespace(**args)
         token = UserService.login(loginDto)
-        return {'success': True, 'message': 'Login successful', 'data': {'token': token}}, 200
+        user = User.query.filter_by(email=loginDto.email).first()
+        return {'success': True, 'message': 'Login successful', 'data': {'token': token,
+                                                                         'name':user.name,
+                                                                         'email':user.email}}, 200
     except ValueError as e:
         error_data = e.args[0] if e.args else "Error desconocido" 
         error_message = error_data.get('error', 'Unknown error')

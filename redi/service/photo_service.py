@@ -8,6 +8,8 @@ class PhotoService():
         pass
     
     def upload_firebase(files,typePost):
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
         urls = []
         photos: List[Photo] = []
         for file in files:
@@ -16,14 +18,21 @@ class PhotoService():
             mime_type, _ = mimetypes.guess_type(file.filename)
             blob_name = f"{typePost}/{file.filename}"
             blob = bucket.blob(blob_name)
+            print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
             # Subir el archivo a Firebase Storage con el tipo MIME detectado
             blob.upload_from_file(file, content_type=mime_type)
+            print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
             
 
             # Obtener la URL pública del archivo
             blob.make_public()
+            print("##$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
             url = blob.public_url
             urls.append(url)
+            print("##$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
             # Esperar a que la carga se complete antes de obtener la URL firmada
             # blob.reload()
             # url = blob.generate_signed_url(expiration=datetime.timedelta(minutes=1), method='GET')
@@ -32,6 +41,9 @@ class PhotoService():
                 type_file = mime_type,
                 url_file = url
             ))
+            print("#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+            print("##$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
         data_base.session.add_all(photos)
         data_base.session.commit()
         # photo_ids = [photo.id for photo in photos]

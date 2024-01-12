@@ -32,6 +32,11 @@ const MyForm = () => {
             {errors.title && <span className={styles.error}>Este campo es obligatorio</span>}
           </div>
           <div className='flex flex-col mb-4'>
+            <label htmlFor="event_date" >Título:</label>
+            <input type='date' {...register('event_date', { required: false })} id="event_date" className="p-2 text-sm md:text-base"/>
+            {errors.title && <span className={styles.error}>Este campo es obligatorio</span>}
+          </div>
+          <div className='flex flex-col mb-4'>
             <label htmlFor="files">Archivos:</label>
             <input {...register('files', { required: true })} type="file" id="files" multiple />
             {errors.files && <span className={styles.error}>Este campo es obligatorio</span>}
@@ -47,11 +52,13 @@ const MyForm = () => {
             </select>
             {errors.category && <span className={styles.error}>Select a category</span>}
           </div>
+
           <div className='flex flex-col mb-4'>
             <label htmlFor="content"  className="text-sm md:text-base">Content:</label>
             <textarea {...register('content', { required: true })} id="content" className="p-2 text-sm md:text-base" />
             {errors.content && <span className={styles.error}>This fiel is required</span>}
           </div>
+
           <button type="submit" className="py-2 px-4 text-sm md:text-base">Send</button>
         </form>
       );

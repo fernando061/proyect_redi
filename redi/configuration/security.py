@@ -5,7 +5,7 @@ from models.user import User
 from models.role import Role
 from functools import wraps
 from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
-
+from datetime import timedelta
 
 # class User:
 #     def __init__(self, id, email):
@@ -64,9 +64,9 @@ def create_token_response(user, additional_claims=None):
 
 # Combinar los roles con cualquier reclamación adicional proporcionada
     all_claims = {'roles': user_roles, **additional_claims}
-
+    expires_delta = timedelta(minutes=60)
 # Generar el token de acceso con reclamaciones adicionales
-    access_token = create_access_token(identity=user.id, additional_claims=all_claims)
+    access_token = create_access_token(identity=user.id, additional_claims=all_claims,expires_delta=expires_delta)
 
 # Devolver la respuesta JSON con el token de acceso
     return make_response(jsonify({'access_token': access_token}), 200)
