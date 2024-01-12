@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
 import styles from './form.module.css';
 import { savePost } from '@/app/service/PostService';
+import { useRouter } from 'next/router';
 const MyForm = () => {
+  const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -22,6 +24,7 @@ const MyForm = () => {
 
         await savePost(formData)
         console.log("guardado")
+        router.push('/dashboard');
       };
     
       return (
