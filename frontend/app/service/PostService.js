@@ -15,7 +15,7 @@ export const getBlogs = async () => {
 
 export const getEvents = async () => {
   try {
-    const response = await axios.get(`${URL}/post/get_type_photo/events`);
+    const response = await axios.get(`${URL}/post/get_type_photo/event`);
     return response.data;
   } catch (error) {
     console.error('Error fetching events:', error);
