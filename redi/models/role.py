@@ -1,7 +1,7 @@
-from extensions import data_base
+from extensions import db
 from sqlalchemy import Column,String,Integer,orm
 
-class Role(data_base.Model):
+class Role(db.Model):
     __tablename__ = 'role'
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True, nullable=False)

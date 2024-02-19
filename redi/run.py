@@ -1,3 +1,4 @@
+# from flask_migrate import migrate,db
 from app import create_app
 import sys
 if __name__ == "__main__":
@@ -6,6 +7,7 @@ if __name__ == "__main__":
         config = sys.argv[1]
 
     app = create_app(config)
+    # migrate.init_app(app, db)
     app.run(debug=True)
     # app = create_app('development')
     # app.run(debug=True)

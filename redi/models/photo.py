@@ -1,8 +1,8 @@
-from extensions import data_base
+from extensions import db
 from sqlalchemy import Column, types,func,orm
 
 
-class Photo(data_base.Model):
+class Photo(db.Model):
     __tablename__ = 'photo'
 
     id = Column(types.Integer, primary_key=True)

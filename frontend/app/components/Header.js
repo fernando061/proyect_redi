@@ -46,7 +46,7 @@ const Header = ({ setShowBlogs, setShowEvents, setShowNews }) => {
           {/* Logo centered */}
           <div className="mx-auto space-x-3 rtl:space-x-reverse logo-container">
             <Image
-              src="/logo.png"
+              src="/"
               alt="Your Logo"
               width={160} // Ajusta el ancho según tus necesidades
               height={90} // Ajusta la altura según tus necesidades

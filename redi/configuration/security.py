@@ -1,6 +1,6 @@
 from flask import current_app, jsonify, abort, make_response,g
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
-from extensions import data_base,bcrypt
+from extensions import db,bcrypt
 from models.user import User
 from models.role import Role
 from functools import wraps

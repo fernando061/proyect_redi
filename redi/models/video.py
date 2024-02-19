@@ -1,8 +1,8 @@
-from extensions import data_base
+from extensions import db
 from sqlalchemy import Column, types,func,orm
 
 
-class Video(data_base.Model):
+class Video(db.Model):
     __tablename__ = 'video'
 
     id = Column(types.Integer, primary_key=True)

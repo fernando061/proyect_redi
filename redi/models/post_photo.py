@@ -1,8 +1,8 @@
-from extensions import data_base
+from extensions import db
 from sqlalchemy import Column,types
 from sqlalchemy.sql.schema import ForeignKey
 
-class PostPhoto(data_base.Model):
+class PostPhoto(db.Model):
     __tablename__ = "post_photo"
 
     id = Column(types.Integer, primary_key=True, autoincrement=True)

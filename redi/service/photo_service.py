@@ -1,7 +1,7 @@
 from firebase_admin import storage
 from models.photo import Photo
 from typing import List
-from extensions import data_base
+from extensions import db
 import mimetypes
 class PhotoService():
     def __init__(self):
@@ -37,8 +37,8 @@ class PhotoService():
                 url_file = url
             ))
 
-        data_base.session.add_all(photos)
-        data_base.session.commit()
+        db.session.add_all(photos)
+        db.session.commit()
         # photo_ids = [photo.id for photo in photos]
         return photos
     # def get_storage_url(bucket_name, blob_name):

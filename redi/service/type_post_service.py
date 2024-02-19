@@ -2,7 +2,7 @@ import imp
 from flask import Blueprint
 from flask_restful import Resource, reqparse, request,Api
 from mapper.type_post_mapper import TypePostMapper
-from extensions import data_base
+from extensions import db
 from flask_jwt_extended import jwt_required
 from configuration.security import admin_required
 from dtos.type_post_dto import TypePostRequest
@@ -18,5 +18,5 @@ class TypePostService():
         if existing_typePost:
             raise ValueError({'error': 'This type is already registered'})
         typePost = TypePostMapper.map_from_request(typePostDto)
-        data_base.session.add(typePost)
-        data_base.session.commit()
+        db.session.add(typePost)
+        db.session.commit()

@@ -1,8 +1,8 @@
-from extensions import data_base
+from extensions import db
 from sqlalchemy import Column,types
 from sqlalchemy.sql.schema import ForeignKey
 
-class UserRole(data_base.Model):
+class UserRole(db.Model):
     __tablename__ = "user_role"
 
     user_id = Column(ForeignKey(column='user.id'),

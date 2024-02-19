@@ -3,7 +3,7 @@ from models.post import Post
 from models.type_post import TypePost
 from service.photo_service import PhotoService 
 from dtos.post_dto import PostDto
-from extensions import data_base
+from extensions import db
 class PostService:
 
     def __init__(self):
@@ -20,8 +20,8 @@ class PostService:
         typePost = TypePost.query.filter_by(name=postDto.type_post).first()
         post.type_post_id = typePost.id
         post.photos.extend(photos)
-        data_base.session.add(post)
-        data_base.session.commit()
+        db.session.add(post)
+        db.session.commit()
 
     def get_type_posts(typePost: str):
         typePost = TypePost.query.filter_by(name=typePost).first()

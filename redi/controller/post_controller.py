@@ -7,9 +7,9 @@ from webargs import fields, validate
 from configuration.security import admin_required,user_required
 from service.post_service import PostService
 from enum import Enum
-
+from flask_socketio import emit
 from dtos.post_dto import PostDto
-
+# from extensions import socketIo
 
 
 publish_post_args = {
@@ -66,3 +66,14 @@ def handle_unprocessable_entity(err):
     response = jsonify({'error': err.data.get('messages', ['Invalid request'])})
     response.status_code = 422
     return response
+
+# @socketIo.event
+# def comment_of_post(comment):
+#     print(comment)
+#     emit('my response', {'data': 'got it!'})
+
+
+# @socketIo.on('comment_of_post')
+# def comment_of_post(comment):
+#     print(comment)
+#     emit('my response', {'data': 'got it!'})

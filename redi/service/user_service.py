@@ -1,10 +1,13 @@
-from bcrypt import hashpw, gensalt, checkpw
+
 from re import search
+
+from flask_socketio import emit, send
+# from flask_socketio import socketio,emit
 from dtos.user_dto import RegisterRequest,LoginRequest
 from utils.patterns import PATTERN_EMAIL, PATTERN_PASSWORD
 from models.user import User
 from models.role import Role
-from extensions import data_base, bcrypt
+from extensions import db, bcrypt,socketIo
 from configuration.security import user_has_admin_role,create_token_response,authenticate_user
 from mapper.user_mapper import UserMapper
 class UserService():
@@ -12,8 +15,6 @@ class UserService():
         pass
 
     def register(userDto: RegisterRequest):
-        print("####")
-        print(userDto)
         email = userDto.email
         if search(PATTERN_EMAIL, email) is None:
             raise ValueError({
@@ -33,18 +34,19 @@ class UserService():
         user = UserMapper.map_from_request(userDto)
         role_user = Role.query.filter_by(name='user').first()
         user.roles.append(role_user)
-        data_base.session.add(user)
-        data_base.session.commit()
+        db.session.add(user)
+        db.session.commit()
     
     def login(loginDto: LoginRequest):
         email =  loginDto.email
         password =  loginDto.password
-        user = data_base.session.query(User).filter(
+        user = db.session.query(User).filter(
         User.email == email).first()
         if user is None:
             raise ValueError({
                 "message": "User not found"
             })
+        
         user = authenticate_user(email, password)
         if not user:
            raise ValueError({'error': 'Invalid email or password','status_code': 401})
@@ -55,4 +57,18 @@ class UserService():
         token_response = create_token_response(user).get_json()
         return token_response['access_token']
         
- 
+    def refresh_token(user):
+        token_response = create_token_response(user).get_json()
+        return token_response['access_token']
+
+    @socketIo.on('connect')
+    def handle_connect():
+        print('Usuario conectado')
+
+    @socketIo.on('disconnect')
+    def handle_disconnect():
+        print('Usuario desconectado')
+    @socketIo.on('message')
+    def my_event(message):
+        print(message)
+        send('message', message)

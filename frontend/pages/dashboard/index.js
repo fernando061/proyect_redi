@@ -12,7 +12,7 @@ const Dashboard = () => {
     console.log(tokenData.roles)
     if (!tokenData || !tokenData.roles.includes('admin')) {
       // Si no hay token o el rol de administrador no está presente, redirige a una página de acceso denegado
-      router.push('/posts');
+      router.push('/');
       return null;
   }
 
